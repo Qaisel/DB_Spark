@@ -8,7 +8,7 @@ hdfs_nn = sys.argv[1]
 
 spark = SparkSession.builder.appName("Assigment 2 Question 2").getOrCreate()
 # YOUR CODE GOES BELOW
-inputPath = f"hdfs://{hdfs_nn}:9000/assignment2/part1/input/"
+inputPath = f"hdfs://{hdfs_nn}:9000/assignment2/part1/input/TA_restaurants_curated_cleaned.csv"
 df = spark.read.option("header",True).csv(inputPath)
 
 dfWithPriceRange = df.filter((col("Price Range").isNotNull()) & (col("Rating").isNotNull()))
@@ -33,10 +33,7 @@ for combi in combinations:
             worst["Name"],
             float(worst["Rating"])
         ))
-    
+
 resultDf = spark.createDataFrame(results, ["City","Price Range", "Best Restaurant","Best Rating","Worst Restaurant","Worst Rating"])
-
+resultDf.show()
 outputPath = f"hdfs://{hdfs_nn}:9000/assignment2/output/question2/"
-resultDf.write.option("header",True).csv(outputPath)
-
-spark.stop()
