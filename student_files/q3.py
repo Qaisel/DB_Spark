@@ -1,6 +1,6 @@
 import sys
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import col, avg
+from pyspark.sql.functions import col, avg, desc
 from pyspark.sql.types import FloatType
 
 # you may add more import if you need to
@@ -32,6 +32,10 @@ final_result = sorted(top_group + bottom_group, key=lambda x: x[0])
 
 # Convert back to DataFrame
 result_df = spark.createDataFrame(final_result, ["City", "AverageRating", "RatingGroup"])
-
+final_df = result_df.orderBy(desc("AverageRating"))
 # Show result
-result_df.show(truncate=False)
+final_df.show(truncate=False)
+
+outputPath = f"hdfs://{hdfs_nn}:9000/assignment2/output/question3/"
+final_df.write.option("header",True).csv(outputPath)
+spark.stop()
