@@ -37,3 +37,4 @@ for combi in combinations:
 resultDf = spark.createDataFrame(results, ["City","Price Range", "Best Restaurant","Best Rating","Worst Restaurant","Worst Rating"])
 resultDf.show()
 outputPath = f"hdfs://{hdfs_nn}:9000/assignment2/output/question2/"
+spark.stop()
