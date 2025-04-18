@@ -1,9 +1,9 @@
 
 # change the following according to your student numbers
-echo "1001234,1003456"
+echo "1006883,1006898,1006967"
 
 # change the following according to your environment
-hdfs_namenode="localhost"
+hdfs_namenode= sys.argv[1]
 
 # don't change following
 
