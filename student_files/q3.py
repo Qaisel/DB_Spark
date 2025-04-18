@@ -36,7 +36,7 @@ final_df = result_df.orderBy(desc("AverageRating"))
 # Show result
 final_df.show(truncate=False)
 
-final_df.write().csv("Cleaned")
+final_df.write.csv("Cleaned")
 outputPath = f"hdfs://{hdfs_nn}:9000/assignment2/output/question3/"
 final_df.write.option("header",True).csv(outputPath)
 spark.stop()
