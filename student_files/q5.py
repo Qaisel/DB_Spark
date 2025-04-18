@@ -42,6 +42,6 @@ result_rdd = filtered_pairs.flatMap(
 )
 
 result_df = spark.createDataFrame(result_rdd, ["movie_id", "title", "actor1", "actor2"])
-
+result_df.show()
 outputPath = f"hdfs://{hdfs_nn}:9000/assignment2/output/q5.parquet"
 result_df.write.mode("overwrite").parquet(outputPath)
