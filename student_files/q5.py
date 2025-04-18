@@ -1,6 +1,5 @@
 import sys
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import col, explode, array, lit
 import json
 from itertools import combinations
 
